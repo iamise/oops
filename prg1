@@ -1,0 +1,56 @@
+#include<iostream>
+#include<cstdlib>
+using namespace std;
+
+class user
+{
+	char name[50];
+	float units,bill;
+	void calculate();
+	public: void read();
+	void print();
+};
+
+void user::read()
+{
+	cout<<"Enter the name of the user:";
+	cin>>name;
+	cout<<"Enter no. of units consumed:";
+	cin>>units;
+	calculate();
+}
+
+void user::print()
+{
+	cout<<"NAME: "<<name<<endl<<"UNITS: "<<units<<endl<<"TOTAL BILL: "<<bill<<endl;
+}
+
+void user::calculate()
+{
+	if(units>=0 && units<=100)
+		bill=1.50*units;
+		
+	else if(units>=101 && units<=200)
+		bill=1.80*units;
+	else
+		bill=2.50*units;
+	if(bill<=50)
+		bill=50;
+	if(bill>300)
+		bill=bill+(0.15*bill);
+}
+
+int main()
+{
+	int num_users;
+	cout<<"Enter no. of users: ";
+	cin>>num_users;
+	user arr[num_users];
+
+	for(int i=0;i<num_users;i++)
+		arr[i].read();
+	cout<<"***************BILL DETAILS*****************\n";
+
+	for(int i=0;i<num_users;i++)
+		arr[i].print();
+}
